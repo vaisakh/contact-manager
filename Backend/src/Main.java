@@ -14,5 +14,9 @@ public class Main {
             System.out.print(group.getGroupName() + " ");
             System.out.println(group.getGroupDescription() + " ");
         }
+
+//        groupDAO.createGroup();
+//        groupDAO.deleteGroup();
+        groupDAO.updateGroup();
     }
 }

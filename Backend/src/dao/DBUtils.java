@@ -10,7 +10,7 @@ public class DBUtils {
     public ResultSet executeQuery(String query) {
         try {
             Class.forName("org.sqlite.JDBC");
-            this.connection = DriverManager.getConnection("jdbc:sqlite:/Users/dimplemonkey/contact_manager");
+            this.connection = DriverManager.getConnection(this.connectionString);
             this.statement = this.connection.createStatement();
             return this.statement.executeQuery(query);
         } catch (Exception e) {
