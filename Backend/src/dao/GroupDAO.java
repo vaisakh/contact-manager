@@ -32,7 +32,7 @@ public class GroupDAO extends DBUtils {
 
     public boolean createGroup() {
         try {
-            String query = "insert into groups(group_id, group_name, group_description) values(4, 'colleagues', 'friends from work')";
+            String query = "insert into groups(group_id, group_name, group_description) values(5, 'colleagues', 'friends from work')";
             Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:/Users/dimplemonkey/contact_manager");
             Statement statement = connection.createStatement();

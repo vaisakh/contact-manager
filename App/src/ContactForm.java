@@ -1,3 +1,4 @@
+import entity.GroupEntity;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
@@ -53,6 +54,14 @@ public class ContactForm extends JFrame implements ActionListener {
             System.out.println("Error in input");
             return;
         }
+
+        boolean result = ContactManagerFacade.createGroup(entity);
+        if(result) {
+            System.out.println("success");
+        } else {
+            System.out.println("failed");
+        }
+
     }
 
     public static GroupEntity getEntityFromUI(ContactForm contactForm) {
