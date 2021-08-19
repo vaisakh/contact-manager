@@ -3,9 +3,9 @@ import entity.GroupEntity;
 
 public class ContactManagerFacade {
 
-    public static boolean createGroup(GroupEntity groupEntity) {
+    public static boolean createOrUpdateGroup(GroupEntity groupEntity) {
         GroupDAO groupDAO = new GroupDAO();
-        boolean result = groupDAO.createGroup();
+        boolean result = groupDAO.createOrUpdateGroup(groupEntity);
         return result;
     }
 }

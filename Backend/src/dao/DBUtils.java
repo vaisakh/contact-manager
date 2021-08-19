@@ -1,9 +1,10 @@
 package dao;
 
 import java.sql.*;
+import java.util.Collections;
 
 public class DBUtils {
-    private String connectionString = "jdbc:sqlite:/Users/dimplemonkey/contact_manager";
+    private String connectionString = "jdbc:sqlite:/Users/vaisakhvm/Projects/Learning/9005.java/contact-manager/contact_manager.db";
     private Statement statement;
     private Connection connection;
 
