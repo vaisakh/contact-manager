@@ -2,12 +2,11 @@ import entity.ContactEntity;
 
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
-public class ContactForm extends JFrame implements ActionListener {
+public class ContactForm extends JPanel implements ActionListener {
     private JLabel contactNameLabel;
     private JLabel contactPhoneLabel;
     private JLabel contactAddr1Label;
@@ -26,7 +25,7 @@ public class ContactForm extends JFrame implements ActionListener {
     private JButton button = new JButton("Submit");
 
     public ContactForm() {
-        super("Contact Form");
+//        super("Contact Form");
         NumberFormat numberFormat = NumberFormat.getInstance();
         numberFormat.setGroupingUsed(false);
         NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
@@ -48,7 +47,7 @@ public class ContactForm extends JFrame implements ActionListener {
         contactPinText = new JFormattedTextField(numberFormatter);
         contactPinText.setColumns(20);
 
-        setLayout(new GridLayout(7,2));
+//        setLayout(new GridLayout(7,2));
 
         add(contactNameLabel);
         add(contactNameText);
@@ -66,9 +65,11 @@ public class ContactForm extends JFrame implements ActionListener {
         add(button);
         button.addActionListener(this);
 
-        setSize(400, 400);
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+//        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+//        setSize(400, 400);
+//        setVisible(true);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void viewHandler(ContactForm contactForm) {

@@ -1,13 +1,11 @@
 import entity.GroupEntity;
 import javax.swing.*;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 
-public class GroupForm extends JFrame implements ActionListener {
-//    private JLabel groupIdLabel;
+public class GroupForm extends JPanel implements ActionListener {
+    //    private JLabel groupIdLabel;
     private JLabel groupNameLabel;
     private JLabel groupDescriptionLabel;
     private JFormattedTextField groupIdText;
@@ -17,7 +15,7 @@ public class GroupForm extends JFrame implements ActionListener {
     private JButton button = new JButton("Submit");
 
     public GroupForm() {
-        super("Group Form");
+//        super("Group Form");
 //        groupIdLabel = new JLabel("Group ID");
 //        NumberFormat numberFormat = NumberFormat.getInstance();
 //        NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
@@ -43,7 +41,7 @@ public class GroupForm extends JFrame implements ActionListener {
 
         setSize(400, 400);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void viewHandler(GroupForm groupForm) {
