@@ -15,6 +15,7 @@ public class GroupForm extends JPanel implements ActionListener {
     private JButton button = new JButton("Submit");
 
     public GroupForm() {
+        //TODO
 //        super("Group Form");
 //        groupIdLabel = new JLabel("Group ID");
 //        NumberFormat numberFormat = NumberFormat.getInstance();
@@ -51,7 +52,7 @@ public class GroupForm extends JPanel implements ActionListener {
             return;
         }
 
-        boolean result = ContactManagerFacade.createOrUpdateGroup(entity);
+        boolean result = ContactManagerFacade.saveGroup(entity);
         if(result) {
             System.out.println("success!");
             groupForm.outputLabel.setText("success!");

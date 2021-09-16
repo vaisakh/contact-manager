@@ -1,10 +1,13 @@
 import entity.ContactEntity;
+import entity.GroupEntity;
 
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 public class ContactForm extends JPanel implements ActionListener {
     private JLabel contactNameLabel;
@@ -24,13 +27,21 @@ public class ContactForm extends JPanel implements ActionListener {
     private JLabel outputLabel = new JLabel("");
     private JButton button = new JButton("Submit");
 
+    private JLabel groupComboBoxLabel = new JLabel("Group");
+    private JComboBox groupComboBox = new JComboBox();
+    private ArrayList<GroupEntity> listGroups;
+
     public ContactForm() {
-//        super("Contact Form");
+
+        listGroups = ContactManagerFacade.getGroups();
+        for (int i = 0; i < listGroups.size() ; i++) {
+            groupComboBox.addItem(new ComboItem(listGroups.get(i).getGroupdId(), listGroups.get(i).getGroupName()));
+        }
+
         NumberFormat numberFormat = NumberFormat.getInstance();
         numberFormat.setGroupingUsed(false);
         NumberFormatter numberFormatter = new NumberFormatter(numberFormat);
         numberFormatter.setAllowsInvalid(false);
-
 
         contactNameLabel = new JLabel("Contact Name");
         contactNameText = new JTextField(20);
@@ -47,8 +58,10 @@ public class ContactForm extends JPanel implements ActionListener {
         contactPinText = new JFormattedTextField(numberFormatter);
         contactPinText.setColumns(20);
 
-//        setLayout(new GridLayout(7,2));
+        setLayout(new GridLayout(8,2));
 
+        add(groupComboBoxLabel);
+        add(groupComboBox);
         add(contactNameLabel);
         add(contactNameText);
         add(contactPhoneLabel);
@@ -63,23 +76,20 @@ public class ContactForm extends JPanel implements ActionListener {
         add(contactPinText);
         add(outputLabel);
         add(button);
-        button.addActionListener(this);
 
-//        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-//        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-//        setSize(400, 400);
-//        setVisible(true);
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        groupComboBox.addActionListener(this);
+        button.addActionListener(this);
     }
 
     public static void viewHandler(ContactForm contactForm) {
+
         ContactEntity entity = getEntityFromUI(contactForm);
         if(entity.equals(null)) {
             System.out.println("Error in input");
             return;
         }
 
-        boolean result = ContactManagerFacade.createOrUpdateContact(entity);
+        boolean result = ContactManagerFacade.saveContact(entity);
         if(result) {
             System.out.println("success!");
             contactForm.outputLabel.setText("success!");
@@ -90,7 +100,11 @@ public class ContactForm extends JPanel implements ActionListener {
     }
 
     public static ContactEntity getEntityFromUI(ContactForm contactForm) {
+        Object groupItem = contactForm.groupComboBox.getSelectedItem();
+        Integer groupId = ((ComboItem)groupItem).getId();
+
         ContactEntity contactEntity = new ContactEntity();
+        contactEntity.setGroupId(groupId);
         contactEntity.setContactName(contactForm.contactNameText.getText());
         contactEntity.setContactPhone(Double.parseDouble(contactForm.contactPhoneText.getText()));
         contactEntity.setContactAddr1(contactForm.contactAddr1Text.getText());
@@ -103,7 +117,7 @@ public class ContactForm extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        outputLabel.setText("Creating a contact");
+        outputLabel.setText("Performing Action");
         viewHandler(this);
     }
 }
