@@ -8,6 +8,9 @@ public class ContactEntity {
     private String contactAddr2;
     private String contactAddr3;
     private int contactPin;
+    private int groupId;
+    //TODO: contact can have multiple group
+    // private ArrayList<int> groupIds;
 
     public int getContactId() {
         return contactId;
@@ -64,4 +67,8 @@ public class ContactEntity {
     public void setContactPin(int contactPin) {
         this.contactPin = contactPin;
     }
+
+    public int getGroupId() { return groupId; }
+
+    public void setGroupId(int groupId) { this.groupId = groupId; }
 }

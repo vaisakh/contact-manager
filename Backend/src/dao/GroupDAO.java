@@ -27,7 +27,7 @@ public class GroupDAO extends DBUtils {
         }
     }
 
-    public boolean createOrUpdateGroup(GroupEntity groupEntity) {
+    public boolean saveGroup(GroupEntity groupEntity) {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection connection = DriverManager.getConnection("jdbc:sqlite:/Users/vaisakhvm/Projects/Learning/9005.java/contact-manager/contact_manager.db");
