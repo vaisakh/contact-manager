@@ -13,5 +13,5 @@ public class Contact {
     private String addr2;
     private String addr3;
     private int pin;
-    private int group;
+    private UUID group;
 }
