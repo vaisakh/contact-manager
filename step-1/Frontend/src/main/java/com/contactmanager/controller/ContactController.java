@@ -1,8 +1,11 @@
 package com.contactmanager.controller;
 
+import com.contactmanager.entity.Contact;
+import com.contactmanager.service.ContactService;
 import com.contactmanager.view.ContactForm;
 
 import javax.swing.*;
+import java.util.UUID;
 
 /**
  * @author vaisakhvm
@@ -15,39 +18,25 @@ public class ContactController {
 
         this.form.submitContact(e -> {
             System.out.println("Contact Form Submitted.");
+            if(this.form.validateForm()) {
+                Contact contact = this.form.getEntityFromUI();
 
-            String firstName = this.form.getFirstName().trim();
-            String lastName = this.form.getLastName().trim();
-            String phoneNumber = this.form.getPhoneNumber().trim();
-            String addr1 = this.form.getAddr1().trim();
-            String addr2 = this.form.getAddr2().trim();
-            String addr3 = this.form.getAddr3().trim();
-            String pinCode = this.form.getPinCode().trim();
+                //TODO
+                if(contact.equals(null)) {
+                    JOptionPane.showMessageDialog(this.form, "Invalid Contact Entity.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
-            if(firstName.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "First Name Required.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if(lastName.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "Last Name Required.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if(phoneNumber.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "Phone Number Required.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if(addr1.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "Addr1 Required", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if(addr2.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "Addr2 Required", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if(addr3.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "Addr3 Required", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } else if(pinCode.isEmpty()) {
-                JOptionPane.showMessageDialog(this.form, "Pin Code Required.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                boolean result = ContactService.saveContact(contact);
+
+                if(result) {
+                    JOptionPane.showMessageDialog(this.form, "success!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this.form, "failed!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                this.form.reset(true);
             }
-
-            this.form.reset(true);
         });
     }
 }

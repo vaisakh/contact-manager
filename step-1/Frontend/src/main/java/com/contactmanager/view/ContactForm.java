@@ -1,7 +1,11 @@
 package com.contactmanager.view;
 
+import com.contactmanager.entity.Contact;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 
 /**
  * @author vaisakhvm
@@ -46,6 +50,9 @@ public class ContactForm extends JPanel {
         pinCodeField = new JTextField(25);
 
         addButton = new JButton("Add Contact");
+
+        // Layout
+        setLayout(new GridLayout(8,2));
 
         add(firstNameLabel);
         add(firstNameField);
@@ -98,6 +105,49 @@ public class ContactForm extends JPanel {
 
     public void submitContact(ActionListener actionListener) {
         addButton.addActionListener(actionListener);
+    }
+
+    public Contact getEntityFromUI() {
+        Contact contact = new Contact();
+
+        contact.setId(UUID.randomUUID());
+        contact.setFirstName(getFirstName().trim());
+        contact.setLastName(getLastName().trim());
+        contact.setPhone(getPhoneNumber().trim());
+        contact.setAddr1(getAddr1().trim());
+        contact.setAddr2(getAddr2().trim());
+        contact.setAddr3(getAddr3().trim());
+        contact.setPhone(getPinCode().trim());
+        contact.setGroup(UUID.randomUUID());
+
+        return contact;
+    }
+
+    public boolean validateForm() {
+        if(firstNameField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "First Name Required.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if(lastNameField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Last Name Required.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if(phoneNumberField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Phone Number Required.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if(addr1Field.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Addr1 Required", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if(addr2Field.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Addr2 Required", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if(addr3Field.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Addr3 Required", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if(pinCodeField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Pin Code Required.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
     }
 
     public void reset(boolean bln) {
