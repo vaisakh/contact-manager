@@ -43,9 +43,7 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
-    }
+    public String getPhone() {  return phone; }
 
     public void setPhone(String phone) {
         this.phone = phone;
@@ -59,9 +57,7 @@ public class Contact {
         this.addr1 = addr1;
     }
 
-    public String getAddr2() {
-        return addr2;
-    }
+    public String getAddr2() { return addr2; }
 
     public void setAddr2(String addr2) {
         this.addr2 = addr2;

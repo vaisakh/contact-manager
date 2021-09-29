@@ -117,7 +117,7 @@ public class ContactForm extends JPanel {
         contact.setAddr1(getAddr1().trim());
         contact.setAddr2(getAddr2().trim());
         contact.setAddr3(getAddr3().trim());
-        contact.setPhone(getPinCode().trim());
+        contact.setPin(Integer.parseInt(getPinCode().trim()));
         contact.setGroup(UUID.randomUUID());
 
         return contact;

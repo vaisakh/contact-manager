@@ -18,8 +18,8 @@ public class ContactService {
 
     public static boolean saveContact(Contact contact) {
         System.out.println("Adding contact");
-        ContactManagerFacade.saveContact(contact);
-        return true;
+        boolean result = ContactManagerFacade.saveContact(contact);
+        return result;
     }
 
     public void deleteContact() {
