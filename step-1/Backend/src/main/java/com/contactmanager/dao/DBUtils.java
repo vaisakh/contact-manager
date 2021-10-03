@@ -10,7 +10,7 @@ public class DBUtils {
     private PreparedStatement statement;
     private Connection connection;
 
-    public boolean executeQuery(String query, SQLParameter params[]) {
+    public boolean executeNonQuery(String query, SQLParameter params[]) {
         try {
             Class.forName("org.sqlite.JDBC");
             this.connection = DriverManager.getConnection(this.connectionString);
@@ -23,6 +23,29 @@ public class DBUtils {
             e.printStackTrace();
             return false;
         }
+    }
+
+    protected boolean executeNonQuery(String query) {
+        return executeNonQuery(query, null);
+    }
+
+    protected ResultSet executeQuery(String query, SQLParameter params[]) {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            this.connection = DriverManager.getConnection(this.connectionString);
+            this.statement = this.connection.prepareStatement(query);
+            addParameters(this.statement, params);
+            return statement.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    protected ResultSet executeQuery(String query) {
+        return executeQuery(query, null);
     }
 
     public void closeConnection() throws SQLException {

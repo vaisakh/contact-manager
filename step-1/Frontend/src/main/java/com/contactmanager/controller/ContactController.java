@@ -2,9 +2,12 @@ package com.contactmanager.controller;
 
 import com.contactmanager.entity.Contact;
 import com.contactmanager.service.ContactService;
+import com.contactmanager.view.ContactDetails;
 import com.contactmanager.view.ContactForm;
 
 import javax.swing.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -12,9 +15,11 @@ import java.util.UUID;
  */
 public class ContactController {
     private ContactForm form;
+    private ContactDetails contactDetails;
 
-    public ContactController(ContactForm contactForm) {
+    public ContactController(ContactForm contactForm, ContactDetails contactDetails) {
         this.form = contactForm;
+        this.contactDetails = contactDetails;
 
         this.form.submitContact(e -> {
             System.out.println("Contact Form Submitted.");
@@ -37,6 +42,10 @@ public class ContactController {
 
                 this.form.reset(true);
             }
+        });
+
+        this.form.viewContacts(e -> {
+            this.contactDetails.viewContacts(ContactService.getContacts());
         });
     }
 }

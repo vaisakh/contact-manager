@@ -3,13 +3,16 @@ package com.contactmanager.service;
 import com.contactmanager.ContactManagerFacade;
 import com.contactmanager.entity.Contact;
 
+import java.util.ArrayList;
+
 /**
  * @author vaisakhvm
  */
 public class ContactService {
 
-    public void getContacts() {
-
+    public static ArrayList<Contact> getContacts() {
+        ArrayList<Contact> contactList = ContactManagerFacade.getContacts();
+        return contactList;
     }
 
     public void getContact() {

@@ -23,6 +23,7 @@ public class ContactForm extends JPanel {
     private JTextField pinCodeField;
 
     private JButton addButton;
+    private JButton viewContactButton;
 
     ContactForm() {
         JLabel firstNameLabel = new JLabel("First name: ");
@@ -50,6 +51,7 @@ public class ContactForm extends JPanel {
         pinCodeField = new JTextField(25);
 
         addButton = new JButton("Add Contact");
+        viewContactButton = new JButton("View Contacts");
 
         // Layout
         setLayout(new GridLayout(8,2));
@@ -72,6 +74,7 @@ public class ContactForm extends JPanel {
         add(pinCodeLabel);
         add(pinCodeField);
 
+        add(viewContactButton);
         add(addButton);
     }
 
@@ -106,6 +109,7 @@ public class ContactForm extends JPanel {
     public void submitContact(ActionListener actionListener) {
         addButton.addActionListener(actionListener);
     }
+    public void viewContacts(ActionListener actionListener) { viewContactButton.addActionListener(actionListener); }
 
     public Contact getEntityFromUI() {
         Contact contact = new Contact();
