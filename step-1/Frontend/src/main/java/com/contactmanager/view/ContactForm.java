@@ -114,7 +114,7 @@ public class ContactForm extends JPanel {
     public Contact getEntityFromUI() {
         Contact contact = new Contact();
 
-        contact.setId(UUID.randomUUID());
+//        contact.setId(UUID.randomUUID());
         contact.setFirstName(getFirstName().trim());
         contact.setLastName(getLastName().trim());
         contact.setPhone(getPhoneNumber().trim());

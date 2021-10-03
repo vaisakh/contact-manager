@@ -20,7 +20,7 @@ public class ContactService {
     }
 
     public static boolean saveContact(Contact contact) {
-        System.out.println("Adding contact");
+        System.out.println("Saving contact");
         boolean result = ContactManagerFacade.saveContact(contact);
         return result;
     }

@@ -10,7 +10,7 @@ public class DBUtils {
     private PreparedStatement statement;
     private Connection connection;
 
-    public boolean executeNonQuery(String query, SQLParameter params[]) {
+    protected boolean executeNonQuery(String query, SQLParameter params[]) {
         try {
             Class.forName("org.sqlite.JDBC");
             this.connection = DriverManager.getConnection(this.connectionString);
@@ -48,7 +48,7 @@ public class DBUtils {
         return executeQuery(query, null);
     }
 
-    public void closeConnection() throws SQLException {
+    protected void closeConnection() throws SQLException {
         this.statement.close();
         this.connection.close();
         this.statement = null;

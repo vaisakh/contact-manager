@@ -47,7 +47,13 @@ public class ContactTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
+        if(columnIndex == 0) {
+            return false;
+        } else if(columnIndex == 8) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -83,8 +89,9 @@ public class ContactTableModel extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex)
     {
         Contact row = contactList.get(rowIndex);
-        System.out.println(row.getPhone().toString());
+
         if(0 == columnIndex) {
+            //TODO ?
             row.setId(UUID.fromString(aValue.toString()));
         } else if(1 == columnIndex) {
             row.setFirstName((String) aValue);
@@ -103,10 +110,9 @@ public class ContactTableModel extends AbstractTableModel {
         } else if(8 == columnIndex) {
             row.setGroup(UUID.fromString(aValue.toString()));
         }
+        fireTableCellUpdated(rowIndex, columnIndex);
 
-
-        System.out.println(row.getPhone().toString());
-
-        ContactService.saveContact(row);
+        //TODO
+        boolean result = ContactService.saveContact((Contact) row);
     }
 }
